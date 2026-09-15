@@ -1,0 +1,595 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Ruslan & Afifah</title>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/image/favicon.png" type="image/png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #fcf9f5;
+            color: #444;
+            overflow-x: hidden;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* BACKGROUND VIDEO STYLING */
+        .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: -1;
+        }
+
+        /* COVER */
+        .cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            z-index: 9999;
+            transition: transform 1s ease-in-out;
+        }
+
+        .cover-content h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            margin: 10px 0;
+            color: #f7d794;
+        }
+
+        .cover-content p {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .guest-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 25px;
+            border-radius: 8px;
+            margin: 20px auto;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #fff;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        /* BUTTON */
+        .btn {
+            background: #d4a373;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #bc6c25;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-content h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.5rem;
+            color: #f7d794;
+        }
+
+        .hero-content .date {
+            margin: 15px 0;
+            font-size: 1.2rem;
+        }
+
+        /* COUNTDOWN */
+        .countdown {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .countdown .box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 60px;
+        }
+
+        .countdown span {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .countdown p {
+            font-size: 0.8rem;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #bc6c25;
+            margin-bottom: 20px;
+        }
+
+        /* COUPLE */
+        .couple-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .person img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #d4a373;
+            margin-bottom: 15px;
+            background-color: #eee;
+        }
+
+        .person h3 {
+            font-size: 1.3rem;
+            color: #333;
+        }
+
+        .amp {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #d4a373;
+        }
+
+        /* EVENTS */
+        .event-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            flex: 1;
+            min-width: 280px;
+            border-top: 4px solid #d4a373;
+            text-align: left;
+        }
+
+        .card i {
+            font-size: 2rem;
+            color: #d4a373;
+            margin-bottom: 15px;
+            display: block;
+            text-align: center;
+        }
+
+        .card h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #bc6c25;
+        }
+
+        .map-btn {
+            margin-top: 30px;
+        }
+
+        /* ANGPAO DIGITAL */
+        .angpao-section {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin-top: 40px;
+            border: 2px dashed #d4a373;
+        }
+
+        .bank-card {
+            background: #faf6f0;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 400px;
+            margin: 20px auto 0 auto;
+            border: 1px solid #e6d5c3;
+        }
+
+        .bank-card h3 {
+            color: #bc6c25;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .rekening-number {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #333;
+            letter-spacing: 1px;
+            margin: 10px 0;
+        }
+
+        .rek-name {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .btn-copy {
+            background: #d4a373;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-copy:hover {
+            background: #bc6c25;
+        }
+
+        /* RSVP FORM */
+        .rsvp form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        /* MUSIC CONTROL */
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #d4a373;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .playing { animation: spin 4s linear infinite; }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- COVER / HALAMAN PEMBUKA DENGAN VIDEO BACKGROUND -->
+    <section id="cover" class="cover">
+        <video autoplay muted loop class="video-bg">
+            <source src="assets/image/video-banner.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <div class="cover-content">
+            <p>The Wedding of</p>
+            <h1>Ruslan &amp; Afifah</h1>
+            <p class="guest-name">Kepada Yth. <br><span>Bapak/Ibu/Saudara/i</span></p>
+            <div id="nama-tamu" class="guest-box">Memuat Nama Tamu...</div>
+            <button class="btn" onclick="bukaUndangan()"><i class="fa-solid fa-envelope-open"></i> Buka Undangan</button>
+        </div>
+    </section>
+
+    <!-- KONTEN UTAMA -->
+    <div id="main-content" class="hidden">
+        
+        <!-- HERO SECTION DENGAN VIDEO BACKGROUND -->
+        <header class="hero">
+            <video autoplay muted loop class="video-bg">
+                <source src="assets/image/video-banner.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+            <div class="hero-content" style="z-index: 1;">
+                <p>The Wedding Of</p>
+                <h1>Muhamad Ruslan, S.Pd.Gr &amp; Nur Afifah Meilany</h1>
+                <p class="date">Minggu, 25 Oktober 2026</p>
+                <div class="countdown">
+                    <div class="box"><span id="days">00</span><p>Hari</p></div>
+                    <div class="box"><span id="hours">00</span><p>Jam</p></div>
+                    <div class="box"><span id="minutes">00</span><p>Menit</p></div>
+                    <div class="box"><span id="seconds">00</span><p>Detik</p></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- PASANGAN MEMPELAI -->
+        <section class="couple">
+            <h2>Assalamu'alaikum Wr. Wb.</h2>
+            <p class="intro">Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:</p>
+            
+            <div class="couple-grid">
+                <div class="person">
+                    <img src="assets/image/image-mempelai-pria.png" alt="Muhamad Ruslan">
+                    <h3>Muhamad Ruslan, S.Pd.Gr (MR)</h3>
+                </div>
+                <span class="amp">&amp;</span>
+                <div class="person">
+                    <img src="assets/image/image-mempelai-wanita.png" alt="Nur Afifah Meilany">
+                    <h3>Nur Afifah Meilany</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- DETAIL ACARA & KIRIM ANGPAO -->
+        <section class="events">
+            <h2>Rangkaian Acara &amp; Lokasi</h2>
+            <div class="event-cards">
+                <div class="card" style="flex: 100%;">
+                    <i class="fa-solid fa-ring"></i>
+                    <h3>Akad &amp; Resepsi Pernikahan</h3>
+                    <p><i class="fa-regular fa-calendar"></i> Minggu, 25 Oktober 2026</p>
+                    <p><i class="fa-regular fa-clock"></i> Pukul 08.00 WIB - Selesai</p>
+                    <p><i class="fa-solid fa-location-dot"></i> Kediaman Mempelai Wanita<br>
+                    Kp. Bugel RT.002 RW. 002, Desa Meles, Kecamatan Adimulyo, Kabupaten Kebumen, Provinsi Jawa Tengah</p>
+                </div>
+            </div>
+            <a href="https://www.google.com/maps/place/7%C2%B039'15.9%22S+109%C2%B034'01.5%22E/@-7.6541983,109.566784,18a,75y,188.9h,53.33t/data=!3m7!1e1!3m5!1s8kMJJqetDogH4IoJ_ZBlHA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D36.673004724642325%26panoid%3D8kMJJqetDogH4IoJ_ZBlHA%26yaw%3D188.89851174230444!7i16384!8i8192!4m4!3m3!8m2!3d-7.6544167!4d109.5670833?hl=en&entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn map-btn"><i class="fa-solid fa-map-location-dot"></i> Lihat Lokasi di Google Maps</a>
+
+            <!-- KOTAK KIRIM ANGPAO / REKENING -->
+            <div class="angpao-section">
+                <i class="fa-solid fa-gift" style="font-size: 2.5rem; color: #d4a373; margin-bottom: 10px;"></i>
+                <h2>Kirim Hadiah &amp; Angpao Digital</h2>
+                <p style="font-size: 0.95rem; color: #666; max-width: 600px; margin: 0 auto;">
+                    Bagi keluarga dan sahabat yang berhalangan hadir namun ingin memberikan tanda kasih atau angpao, dapat dikirimkan melalui rekening di bawah ini:
+                </p>
+                
+                <div class="bank-card">
+                    <h3>Bank BCA</h3>
+                    <div class="rekening-number" id="rekNum">7675209235</div>
+                    <div class="rek-name">A.N Nur Afifah Meilany</div>
+                    <button class="btn-copy" onclick="salinRekening()"><i class="fa-regular fa-copy"></i> Salin Nomor Rekening</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP & UCAPAN -->
+        <section class="rsvp">
+            <h2>Kirim Ucapan &amp; Konfirmasi Kehadiran</h2>
+            <form id="rsvpForm" onsubmit="kirimWhatsApp(event)">
+                <div class="form-group">
+                    <input type="text" id="nama" placeholder="Nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <select id="status" required>
+                        <option value="">Konfirmasi Kehadiran</option>
+                        <option value="Hadir">Hadir (Hadir memeriahkan)</option>
+                        <option value="Berhalangan">Berhalangan Hadir</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="pesan" rows="4" placeholder="Tulis ucapan dan doa..." required></textarea>
+                </div>
+                <button type="submit" class="btn"><i class="fa-brands fa-whatsapp"></i> Kirim via WhatsApp</button>
+            </form>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>&copy; 2026 Ruslan &amp; Afifah Wedding. Developer by Muhamad Ruslan, S.Pd.Gr.</p>
+        </footer>
+
+    </div>
+
+    <!-- Musik Latar -->
+    <audio id="background-music" preload="auto" loop>
+        <source src="assets/image/musik-background.mp3" type="audio/mpeg">
+    </audio>
+    <div id="music-control" class="music-off" onclick="toggleMusic()"><i class="fa-solid fa-music"></i></div>
+
+    <script>
+        // Fungsi Salin Nomor Rekening
+        function salinRekening() {
+            const rekText = document.getElementById("rekNum").innerText;
+            navigator.clipboard.writeText(rekText).then(() => {
+                alert("Nomor rekening berhasil disalin: " + rekText);
+            }).catch(err => {
+                console.error("Gagal menyalin teks: ", err);
+            });
+        }
+
+        // Membaca nama tamu secara otomatis dari URL (?id=... atau ?to=...)
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestId = urlParams.get('id');
+            const guestTo = urlParams.get('to');
+
+            const setGuestName = (name) => {
+                document.getElementById('nama-tamu').innerText = name;
+                document.getElementById('nama').value = name;
+            };
+
+            if (guestId) {
+                fetch('data/tamu.csv')
+                    .then(response => response.text())
+                    .then(data => {
+                        const rows = data.split('\n');
+                        let foundName = "Tamu Undangan";
+
+                        for (let i = 1; i < rows.length; i++) {
+                            const cols = rows[i].split(',');
+                            if (cols.length >= 2) {
+                                const id = cols[0].trim();
+                                const nama = cols[1].trim();
+                                if (id === guestId) {
+                                    foundName = nama;
+                                    break;
+                                }
+                            }
+                        }
+                        setGuestName(foundName);
+                    })
+                    .catch(error => {
+                        console.error("Gagal memuat data tamu:", error);
+                        setGuestName("Tamu Undangan");
+                    });
+            } else if (guestTo) {
+                setGuestName(decodeURIComponent(guestTo));
+            } else {
+                setGuestName("Tamu Undangan");
+            }
+        });
+
+        let isPlaying = false;
+
+        // Tombol Buka Undangan (Memicu Musik)
+        function bukaUndangan() {
+            const cover = document.getElementById('cover');
+            const mainContent = document.getElementById('main-content');
+            const music = document.getElementById('background-music');
+            const control = document.getElementById('music-control');
+            
+            cover.style.transform = 'translateY(-100%)';
+            setTimeout(() => {
+                cover.style.display = 'none';
+                mainContent.classList.remove('hidden');
+            }, 1000);
+
+            music.play().then(() => {
+                isPlaying = true;
+                control.classList.add('playing');
+            }).catch(error => {
+                console.log("Gagal memutar audio:", error);
+            });
+        }
+
+        // Kontrol Musik Manual
+        function toggleMusic() {
+            let music = document.getElementById('background-music');
+            let control = document.getElementById('music-control');
+            if (isPlaying) {
+                music.pause();
+                control.classList.remove('playing');
+            } else {
+                music.play().then(() => {
+                    control.classList.add('playing');
+                });
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Countdown Timer (25 Oktober 2026 pukul 10:00 WIB)
+        const countDownDate = new Date("Oct 25, 2026 10:00:00").getTime();
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.querySelector(".countdown").innerHTML = "<h3>Acara Sedang Berlangsung</h3>";
+            }
+        }, 1000);
+
+        // Kirim RSVP ke WhatsApp Pengantin
+        function kirimWhatsApp(event) {
+            event.preventDefault();
+            const nama = document.getElementById('nama').value;
+            const status = document.getElementById('status').value;
+            const pesan = document.getElementById('pesan').value;
+
+            const nomorWhatsApp = "628381055378"; // Ganti dengan nomor WhatsApp Anda
+            const teks = `Halo Pasangan Mr.Ruslan & Afifah,%0A%0ASaya *${nama}* mengonfirmasi bahwa saya *${status}* hadir.%0A%0AUcapan & Doa:%0A"${pesan}"`;
+
+            window.open(`https://wa.me/${nomorWhatsApp}?text=${teks}`, '_blank');
+        }
+    </script>
+</body>
+</html>
