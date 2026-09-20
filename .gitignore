@@ -1,1 +1,4 @@
 frontend/data/tamu.csv
+
+# Local Netlify folder
+.netlify
