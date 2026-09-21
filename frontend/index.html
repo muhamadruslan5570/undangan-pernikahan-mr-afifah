@@ -31,38 +31,38 @@ body{background-color:#fcf9f5;color:#333;overflow-x:hidden;line-height:1.6}
 .video-bg{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .video-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:1}
 
-/* COVER DENGAN KOTAK AMPLOP TRANSPARAN */
-.cover{position:fixed;top:0;left:0;width:100%;height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;color:#fff;z-index:9999;transition:transform 1s ease-in-out;padding:20px}
-.cover-content{position:relative;z-index:2;max-width:550px;width:100%}
+/* COVER DENGAN KOTAK AMPLOP TRANSPARAN (DIKECILKAN AGAR TIDAK TERLALU BESAR) */
+.cover{position:fixed;top:0;left:0;width:100%;height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;color:#fff;z-index:9999;transition:transform 1s ease-in-out;padding:15px}
+.cover-content{position:relative;z-index:2;max-width:480px;width:100%}
 
 .cover-envelope-box {
     background: transparent;
     border: 2px solid rgba(212, 163, 115, 0.85);
-    border-radius: 16px;
-    padding: 35px 25px;
+    border-radius: 12px;
+    padding: 20px 15px;
     text-align: center;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
     backdrop-filter: blur(2px);
     color: #fff;
 }
 
-/* ANIMASI SEPASANG PENGANTIN BERJALAN (MURNI CSS & FONT AWESOME) */
+/* ANIMASI SEPASANG PENGANTIN BERJALAN (DIKECILKAN SEDIKIT) */
 .couple-walking-animation {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    margin: 0 auto 15px auto;
-    height: 55px;
+    gap: 10px;
+    margin: 0 auto 8px auto;
+    height: 40px;
     position: relative;
     animation: coupleWalk 3s infinite ease-in-out alternate;
 }
 
 .walking-person {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     color: #f7d794;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
     position: relative;
 }
 
@@ -76,27 +76,27 @@ body{background-color:#fcf9f5;color:#333;overflow-x:hidden;line-height:1.6}
 }
 
 @keyframes coupleWalk {
-    0% { transform: translateX(-10px); }
-    100% { transform: translateX(10px); }
+    0% { transform: translateX(-8px); }
+    100% { transform: translateX(8px); }
 }
 
 @keyframes stepGroom {
     0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-4px) rotate(-3deg); }
+    50% { transform: translateY(-3px) rotate(-3deg); }
 }
 
 @keyframes stepBride {
     0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-4px) rotate(3deg); }
+    50% { transform: translateY(-3px) rotate(3deg); }
 }
 
-.cover-envelope-box p.small-title{font-size:0.9rem;letter-spacing:2px;color:#f7d794;text-transform:uppercase}
-.cover-envelope-box h1{font-family:'Great Vibes',cursive;font-size:clamp(2.8rem, 7vw, 4rem);margin:5px 0;color:#f7d794;line-height:1.2;text-shadow: 0 2px 4px rgba(0,0,0,0.5)}
-.cover-envelope-box .guest-label{font-size:0.95rem;color:#eee;margin-top:15px}
-.guest-box{background:rgba(255,255,255,0.15);border:1px solid rgba(247,215,148,0.5);padding:10px 20px;border-radius:8px;margin:10px auto 20px auto;display:inline-block;font-weight:600;font-size:clamp(1rem, 3.5vw, 1.15rem);color:#f7d794;max-width:90%;word-wrap:break-word}
+.cover-envelope-box p.small-title{font-size:0.8rem;letter-spacing:1.5px;color:#f7d794;text-transform:uppercase}
+.cover-envelope-box h1{font-family:'Great Vibes',cursive;font-size:clamp(2.2rem, 5.5vw, 3.2rem);margin:2px 0;color:#f7d794;line-height:1.1;text-shadow: 0 2px 4px rgba(0,0,0,0.5)}
+.cover-envelope-box .guest-label{font-size:0.85rem;color:#eee;margin-top:8px}
+.guest-box{background:rgba(255,255,255,0.15);border:1px solid rgba(247,215,148,0.5);padding:6px 15px;border-radius:6px;margin:8px auto 12px auto;display:inline-block;font-weight:600;font-size:clamp(0.9rem, 3vw, 1.05rem);color:#f7d794;max-width:90%;word-wrap:break-word}
 
 /* BUTTON */
-.btn{background:#d4a373;color:#fff;border:none;padding:12px 30px;font-size:1rem;font-weight:500;border-radius:30px;cursor:pointer;transition:.3s;text-decoration:none;display:inline-block;box-shadow: 0 4px 10px rgba(0,0,0,0.2)}
+.btn{background:#d4a373;color:#fff;border:none;padding:10px 25px;font-size:0.95rem;font-weight:500;border-radius:30px;cursor:pointer;transition:.3s;text-decoration:none;display:inline-block;box-shadow: 0 4px 10px rgba(0,0,0,0.2)}
 .btn:hover{background:#bc6c25}
 
 /* HERO SECTION */
@@ -471,15 +471,17 @@ footer{
                 <!-- Animasi Sepasang Pengantin Berjalan Murni CSS & FontAwesome -->
                 <div class="couple-walking-animation">
                     <i class="fa-solid fa-person walking-person groom" title="Mempelai Pria"></i>
-                    <i class="fa-solid fa-ring" style="font-size: 1.2rem; color: #f7d794; margin: 0 5px; align-self: center;"></i>
+                    <i class="fa-solid fa-ring" style="font-size: 1rem; color: #f7d794; margin: 0 3px; align-self: center;"></i>
                     <i class="fa-solid fa-person-dress walking-person bride" title="Mempelai Wanita"></i>
                 </div>
                 
                 <p class="small-title">The Wedding of</p>
-                <h1>Ruslan &amp; Afifah</h1>
+                <h1>Mr. Ruslan</h1>
+                <h1>&</h1>
+                <h1>Miss. Afifah</h1>
                 <p class="guest-label">Kepada Yth. <br><span>Bapak/Ibu/Saudara/i</span></p>
                 <div id="nama-tamu" class="guest-box">Memuat Nama Tamu...</div>
-                <div style="margin-top: 10px;">
+                <div style="margin-top: 5px;">
                     <button class="btn" onclick="bukaUndangan()"><i class="fa-solid fa-envelope-open"></i> Buka Undangan</button>
                 </div>
             </div>
@@ -718,12 +720,12 @@ footer{
                 <div class="promo-box">
                     <h3>Ingin Membuat Website Undangan Seperti Ini?</h3>
                     <p>Praktis, elegan, dilengkapi video background, fitur tamu undangan otomatis via CSV, RSVP WhatsApp, dan kolom ucapan digital. Cocok untuk pernikahan, ulang tahun, atau acara spesial Anda!</p>
-                    <a href="https://wa.me/628381055378?text=Halo%20Kak%20Ruslan,%20saya%20tertarik%20ingin%20membuat%20website%20undangan%20online%20seperti%20punya%20Anda.%20Bisa%20dibantu?" target="_blank" class="btn-promo">
+                    <a href="https://wa.me/628381055378?text=Halo%20Mr%20Ruslan,%20saya%20tertarik%20ingin%20membuat%20website%20undangan%20online%20seperti%20punya%20Anda.%20Bisa%20dibantu?" target="_blank" class="btn-promo">
                         <i class="fa-brands fa-whatsapp"></i> Pesan Jasa Website Undangan
                     </a>
                 </div>
 
-                <h4>Ruslan &amp; Afifah Wedding</h4>
+                <h4>Mr. Ruslan &amp; Miss. Afifah Wedding</h4>
                 <p class="desc">Website Resmi Undangan Pernikahan Muhamad Ruslan, S.Pd.Gr &amp; Nur Afifah Meilany. Diselenggarakan pada Minggu, 25 Oktober 2026 bertempat di Desa Meles, Kecamatan Adimulyo, Kabupaten Kebumen, Jawa Tengah.</p>
                 
                 <div class="seo-footer-links">
