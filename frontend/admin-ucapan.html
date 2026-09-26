@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Ucapan</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f8f4ef;
+  color:#333;
+}
+.container{
+  max-width:800px;
+  margin:40px auto;
+  padding:20px;
+}
+.card{
+  background:#fff;
+  border-radius:14px;
+  padding:25px;
+  box-shadow:0 4px 20px rgba(0,0,0,.08);
+}
+h1{
+  margin-top:0;
+  color:#bc6c25;
+}
+input{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border:1px solid #ddd;
+  border-radius:8px;
+}
+button{
+  border:0;
+  border-radius:8px;
+  padding:10px 16px;
+  cursor:pointer;
+  background:#d4a373;
+  color:#fff;
+}
+button:hover{background:#bc6c25}
+.btn-delete{
+  background:#dc3545;
+  margin-top:10px;
+}
+.btn-delete:hover{background:#b02a37}
+.comment{
+  border:1px solid #e6d5c3;
+  border-radius:10px;
+  padding:15px;
+  margin-top:15px;
+  background:#faf6f0;
+}
+.status{
+  display:inline-block;
+  padding:4px 9px;
+  border-radius:12px;
+  font-size:12px;
+  background:#fff;
+  border:1px solid #ddd;
+}
+.muted{
+  color:#777;
+  font-size:13px;
+}
+#result{
+  margin-top:15px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <div class="card">
+    <h1>Admin Ucapan</h1>
+
+    <p class="muted">
+      Masukkan token admin untuk mengelola ucapan tamu.
+    </p>
+
+    <input
+      type="password"
+      id="token"
+      placeholder="GUESTBOOK_ADMIN_TOKEN"
+      autocomplete="off"
+    >
+
+    <button onclick="loadComments()">Muat Ucapan</button>
+
+    <div id="result"></div>
+    <div id="comments"></div>
+  </div>
+</div>
+
+<script>
+const API="/api/messages";
+
+async function loadComments(){
+  const result=document.getElementById("result");
+  const container=document.getElementById("comments");
+
+  result.textContent="Memuat...";
+  container.innerHTML="";
+
+  try{
+    const response=await fetch(API);
+
+    if(!response.ok){
+      throw new Error("Gagal mengambil ucapan.");
+    }
+
+    const data=await response.json();
+    const comments=Array.isArray(data)
+      ? data
+      : (data.messages || []);
+
+    if(!comments.length){
+      result.textContent="Belum ada ucapan.";
+      return;
+    }
+
+    result.textContent=`Total ${comments.length} ucapan`;
+
+    container.innerHTML=comments.map(comment=>`
+      <div class="comment">
+        <strong>${escapeHtml(comment.name)}</strong>
+        <span class="status">${escapeHtml(comment.status)}</span>
+
+        <p>${escapeHtml(comment.message)}</p>
+
+        <div class="muted">
+          ${comment.created_at
+            ? new Date(comment.created_at).toLocaleString("id-ID")
+            : ""}
+        </div>
+
+        <button
+          class="btn-delete"
+          onclick="deleteComment(${Number(comment.id)})">
+          Hapus Ucapan
+        </button>
+      </div>
+    `).join("");
+
+  }catch(error){
+    result.textContent=error.message;
+  }
+}
+
+async function deleteComment(id){
+  const token=document.getElementById("token").value.trim();
+
+  if(!token){
+    alert("Masukkan token admin terlebih dahulu.");
+    return;
+  }
+
+  if(!confirm("Yakin ingin menghapus ucapan ini?")){
+    return;
+  }
+
+  try{
+    const response=await fetch(`${API}?id=${encodeURIComponent(id)}`,{
+      method:"DELETE",
+      headers:{
+        "Authorization":`Bearer ${token}`
+      }
+    });
+
+    const data=await response.json().catch(()=>({}));
+
+    if(!response.ok){
+      throw new Error(data.detail || "Gagal menghapus ucapan.");
+    }
+
+    alert("Ucapan berhasil dihapus.");
+    await loadComments();
+
+  }catch(error){
+    alert(error.message);
+  }
+}
+
+function escapeHtml(value){
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+</script>
+</body>
+</html>
